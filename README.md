@@ -4,25 +4,33 @@ This is a pytorch implementation for [Instat NGP](https://nvlabs.github.io/insta
 
 ## Installation and Environment
 
-It was tested with 2080ti on windows machine. cuda version 11.8, torch version 1.13.0+cu117 is recommended.
+It was tested with 2080ti on windows machine. cuda version 11.8, python version 3.9, torch version 1.13.0+cu117 is recommended.
 
 Conda is recommended to install the dependencies. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the following:
 
 ```bash
+conda create -n nerf-hash python=3.9
+conda activate nerf-hash
+
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
 pip install imageio
 pip install kornia
-pip install numpy
 pip install tqdm
 ```
 
-Training data needs to be downloaded from [google drive](https://drive.google.com/drive/folders/1JDdLGDruGNXWnM1eqY1FNL9PlStjaKWi)
+
+## Training Data
+
+Training data needs to be downloaded from [google drive](https://drive.google.com/drive/folders/1JDdLGDruGNXWnM1eqY1FNL9PlStjaKWi) and place in `./data/`
+
+Only blender format is supported. 
 
 ## Usage
 
 ```python
 python run.py
 ```
-Default path to training data is set to `./data/chair`. Default number of iterations is set to 1000. You can also change data and number of iterations with the following options.
+Default path to training data is set to `./data/chair`. Default number of iterations is set to 1000. 1000 is a relatively small number, if it does not converge and produce the correct image, try run it again (happens rarely). You can also change data and number of iterations with the following options:
 
 ```python
 python run.py --data ./data/lego --iter 1200
@@ -36,9 +44,6 @@ Training Parameters and loss function is set to the recommendation in [Instat NG
 
 Convergence is observed within 1000 iterations for most of the time. To reduce the run time, the program is set to run 1000 iterations by default. If not, try run it again or increase the number of iterations. Also increase the number of iterations to get better quality.
 
-## Supported Image Format
-
-Only blender format is supported. The data are located in `./data/` folder.
 
 ## Performance
 
