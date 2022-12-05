@@ -53,7 +53,6 @@ class NeRF(nn.Module):
 
     def get_parameters(self, lr, weight_decay):
         return [{'params': self.hash_encoder.parameters(), 'lr': lr},
-                {'params': self.sh_encoder.parameters(), 'lr': lr},
                 {'params': self.density_MLP.parameters(), 'weight_decay': weight_decay, 'lr': lr},
                 {'params': self.color_MLP.parameters(), 'weight_decay': weight_decay, 'lr': lr}]
     
